@@ -1,0 +1,20 @@
+"use-strict";
+var cors = require('cors');
+module.exports = function(app) {
+    // var products = require('../Controller/product_controller');
+    // var category = require('../Controller/category_controller');
+    var user = require('../Controller/user_controller');
+    var book = require('../Controller/book_controller');
+    app.use(cors());
+
+    // app.route("/products").get(products.get_all_products);
+    // app.route("/products/:id").get(products.get_product_by_id);
+    // app.route("/productsbycategory").get(products.get_products_by_category);
+    // app.route("/category").get(category.get_all_category);
+    // app.route("/registeruser").post(user.register_user);
+    // app.route('/login').post(user.login);
+    app.route('/allbooks').get(book.getAllBooks);
+    app.route('/addbook').post(book.addBooks);
+    app.route('/getbook').post(book.getBook);
+    
+};
