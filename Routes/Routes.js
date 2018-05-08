@@ -16,5 +16,6 @@ module.exports = function(app) {
     app.route('/allbooks').get(book.getAllBooks);
     app.route('/addbook').post(book.addBooks);
     app.route('/getbook').post(book.getBook);
+    app.route('/deletebook').post(book.deleteBook);
     
 };

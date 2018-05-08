@@ -35,13 +35,26 @@ exports.addBooks = (req,res) => {
     new_book.save((err,book)=>{
         if (err) {
             res.send({status: 400,
-                message: 'error'
+                message: err
                 });
         } else {
             res.send({status: 200,
-            message: err
+            message: "added successfully"
             });
             
         }
     });
+}
+exports.deleteBook = (req,res) => {
+    Books.deleteOne({_id: req.body.id},(err,book) => {
+        if (err) {
+            res.send('book not found',err);
+        }
+        
+        res.json({
+            status: 200,
+            message: 'deleted'
+        });
+    });
+    
 }
