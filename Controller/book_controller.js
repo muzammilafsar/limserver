@@ -32,9 +32,16 @@ exports.getBook = (req,res) => {
 }
 exports.addBooks = (req,res) => {
     var new_book = new Books(req.body);
-    new_book.save(()=>{
-        res.send({status: 200,
-        message: 'saved successfully'
-    });
+    new_book.save((err,book)=>{
+        if (err) {
+            res.send({status: 400,
+                message: 'error'
+                });
+        } else {
+            res.send({status: 200,
+            message: 'saved successfully'
+            });
+            
+        }
     });
 }
