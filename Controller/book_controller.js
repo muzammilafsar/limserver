@@ -59,41 +59,48 @@ exports.deleteBook = (req,res) => {
     
 }
 exports.updateBook = (req,res) => {
-    Books.updateOne({_id: req.body.id}, req.body,(err,book) =>{
-        if (err) {
-            res.send({
-                status: 400,
-                message: err
-            });
-        }
-        res.send({
-            status:200,
-            message: "updated"
-        })
-    })
-    // Books.findOne({_id: req.body.id},(err,book) => {
-    //     if (err) {
-    //         res.send('book not found',err);
+    // Books.findByIdAndUpdate(  
+    //     // the id of the item to find
+    //     req.body.id,
+    
+    //     // the change to be made. Mongoose will smartly combine your existing 
+    //     // document with this change, which allows for partial updates too
+    //     req.body,
+    
+    //     // an option that asks mongoose to return the updated version 
+    //     // of the document instead of the pre-updated one.
+    //     {new: true},
+    
+    //     // the callback function
+    //     (err, todo) => {
+    //     // Handle any possible database errors
+    //         if (err) return res.status(500).send(err);
+    //         return res.send(todo);
     //     }
-    //     book.title = req.body.title;
-    //     book.author = req.body.author;
-    //     book.description = req.body.description;
-    //     book.image = req.body.image;
-    //     book.isbn = req.body.isbn;
-    //     book.no_of_copies = req.body.no_of_copies;
-    //     book.save((err,book) => {
-    //         if (err) {
-    //             res.send({
-    //                 status: 400,
-    //                 message: err
-    //             });
-    //         }   
-    //         res.send({
-    //             status: 200,
-    //             message: book
-    //         });
-    //     });
+    // )
+    Books.findOne({_id: req.body.id},(err,book) => {
+        if (err) {
+            res.send('book not found',err);
+        }
+        book.title = req.body.title;
+        book.author = req.body.author;
+        book.description = req.body.description;
+        book.image = req.body.image;
+        book.isbn = req.body.isbn;
+        book.no_of_copies = req.body.no_of_copies;
+        book.save((err,book) => {
+            if (err) {
+                res.send({
+                    status: 400,
+                    message: err
+                });
+            }   
+            res.send({
+                status: 200,
+                message: book
+            });
+        });
         
-    // });
+    });
     
 }
