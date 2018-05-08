@@ -38,8 +38,18 @@ exports.borrowbook = (req,res) => {
             
         });
 
+    });
+}
+exports.getAll = (req,res) =>{
+    Borrow.find({},(err,books)=>{
+        if(err) {
+            res.send({
+                status:400
+            });
+        }
+        res.send({
+            status:200,
+            books: books
+        })
     })
-
-    
-
 }

@@ -19,6 +19,6 @@ module.exports = function(app) {
     app.route('/getbook').post(book.getBook);
     app.route('/deletebook').post(book.deleteBook);
     app.route('/updatebook').post(book.updateBook);
-    
+    app.route('/getallborrowedbooks').get(borrow.getAll);
     app.route('/borrowbook').post(borrow.borrowbook);
 };
