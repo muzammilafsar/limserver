@@ -18,8 +18,8 @@ exports.getAllBooks = (req,res) => {
 
 }
 exports.getBook = (req,res) => {
-
-    Books.find({_id: req.body.id},(err,book) => {
+    
+    Books.findOne({_id: req.body.id},(err,book) => {
         if (err) {
             res.send('Interval error',err);
         }
@@ -55,6 +55,33 @@ exports.deleteBook = (req,res) => {
             status: 200,
             message: 'deleted'
         });
+    });
+    
+}
+exports.updateBook = (req,res) => {
+    Books.findOne({_id: req.body.id},(err,book) => {
+        if (err) {
+            res.send('book not found',err);
+        }
+        book.title = req.body.title;
+        book.author = req.body.author;
+        book.description = req.body.description;
+        book.image = req.body.image;
+        book.isbn = req.body.isbn;
+        book.no_of_copies = req.body.no_of_copies;
+        book.save((err,book) => {
+            if (err) {
+                res.send({
+                    status: 400,
+                    message: err
+                });
+            }
+            res.send({
+                status: 200,
+                message: book
+            });
+        });
+        
     });
     
 }
