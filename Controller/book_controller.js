@@ -59,6 +59,7 @@ exports.deleteBook = (req,res) => {
     
 }
 exports.updateBook = (req,res) => {
+    // Books.updateOne({_id: req.body.id}, req.body,)
     Books.findOne({_id: req.body.id},(err,book) => {
         if (err) {
             res.send('book not found',err);
