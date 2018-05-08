@@ -29,7 +29,7 @@ var BookSchema = new Schema({
         type: String
     },
     category: {
-        type:string, 
+        type: String, 
         default:'tech'
     }
 
