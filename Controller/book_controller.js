@@ -39,7 +39,7 @@ exports.addBooks = (req,res) => {
                 });
         } else {
             res.send({status: 200,
-            message: 'saved successfully'
+            message: err
             });
             
         }
