@@ -59,30 +59,41 @@ exports.deleteBook = (req,res) => {
     
 }
 exports.updateBook = (req,res) => {
-    // Books.updateOne({_id: req.body.id}, req.body,)
-    Books.findOne({_id: req.body.id},(err,book) => {
+    Books.updateOne({_id: req.body.id}, req.body,(err,book) =>{
         if (err) {
-            res.send('book not found',err);
-        }
-        book.title = req.body.title;
-        book.author = req.body.author;
-        book.description = req.body.description;
-        book.image = req.body.image;
-        book.isbn = req.body.isbn;
-        book.no_of_copies = req.body.no_of_copies;
-        book.save((err,book) => {
-            if (err) {
-                res.send({
-                    status: 400,
-                    message: err
-                });
-            }   
             res.send({
-                status: 200,
-                message: book
+                status: 400,
+                message: err
             });
-        });
+        }
+        res.send({
+            status:200,
+            message: "updated"
+        })
+    })
+    // Books.findOne({_id: req.body.id},(err,book) => {
+    //     if (err) {
+    //         res.send('book not found',err);
+    //     }
+    //     book.title = req.body.title;
+    //     book.author = req.body.author;
+    //     book.description = req.body.description;
+    //     book.image = req.body.image;
+    //     book.isbn = req.body.isbn;
+    //     book.no_of_copies = req.body.no_of_copies;
+    //     book.save((err,book) => {
+    //         if (err) {
+    //             res.send({
+    //                 status: 400,
+    //                 message: err
+    //             });
+    //         }   
+    //         res.send({
+    //             status: 200,
+    //             message: book
+    //         });
+    //     });
         
-    });
+    // });
     
 }
