@@ -4,6 +4,7 @@ var app = express();
 port = process.env.PORT || 3000 ;
 var mongoose = require('mongoose');
 var Books = require('./Models/BookModel');
+var Borrow = mongoose.model('BorrowedBooks');
 // var Product = require('./Models/ProductModel');
 var User = require('./Models/UserModal');
 var bodyParser = require('body-parser');

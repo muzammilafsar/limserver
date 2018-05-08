@@ -27,6 +27,10 @@ var BookSchema = new Schema({
     },
     isbn:{
         type: String
+    },
+    category: {
+        type:string, 
+        default:'tech'
     }
 
 });

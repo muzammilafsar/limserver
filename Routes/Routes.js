@@ -5,6 +5,7 @@ module.exports = function(app) {
     // var category = require('../Controller/category_controller');
     var user = require('../Controller/user_controller');
     var book = require('../Controller/book_controller');
+    var borrow = require('../Controller/borrow_book_controller');
     app.use(cors());
 
     // app.route("/products").get(products.get_all_products);
@@ -18,4 +19,6 @@ module.exports = function(app) {
     app.route('/getbook').post(book.getBook);
     app.route('/deletebook').post(book.deleteBook);
     app.route('/updatebook').post(book.updateBook);
+    
+    app.route('/borrowbook').post(borrow.borrowbook);
 };
