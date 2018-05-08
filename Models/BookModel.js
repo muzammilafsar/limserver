@@ -14,11 +14,13 @@ var BookSchema = new Schema({
     },
     no_of_copies: {
         type: Number,
-        required: true
+        required: true,
+        default: 1
     },
     available_copies: {
         type: Number,
-        required: true
+        required: true,
+        default: 1
     },
     image:{
         type: String
