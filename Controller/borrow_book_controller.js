@@ -19,7 +19,7 @@ exports.borrowbook = (req,res) => {
                 message: err
                 });
             }
-            if (borrow.length === 0) {
+            if (borow.length === 0) {
                 Books.findOne({_id: req.body.bookid},(err,book) => {
                     if (err) {
                         res.send('Interval error',err);
@@ -65,7 +65,7 @@ exports.borrowbook = (req,res) => {
             res.send({
                 status: 500 ,
                 message: "already issued",
-                borow:borow
+                borow: borow
             })
         }
     });
