@@ -26,4 +26,5 @@ module.exports = function(app) {
     app.route('/borrowbook').post(borrow.borrowbook);
     app.route('/userbooks').post(borrow.userBorrowedBooks);
     app.route('/deleteborrow').post(borrow.deletedBorrowed);
+    app.route('/returnbook').post(borrow.returnBook);
 };

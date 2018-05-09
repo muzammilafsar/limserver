@@ -96,3 +96,47 @@ exports.deletedBorrowed = (req, res) => {
             })
     });
 }
+exports.returnBook = (req, res) => {
+    Borrow.findOne({ _id: req.body.id},(err,borrow) => {
+            if(err) {
+                res.send({
+                    status:400,
+                    message: err
+                });
+            } else {
+                Books.findOne({_id: borrow.bookid}, (err, book) => {
+                    if(err) {
+                        res.send({
+                            status: 400,
+                            message: 'book not found'
+                        });
+                    } else {
+                        book.available_copies = book.available_copies + 1 ;
+                        book.save((err,book) => {
+                            if (err) {
+                                res.send({
+                                    status: 401,
+                                    message: err
+                                });
+                            } else {
+                               borrow.Returned = true;
+                               borrow.save((err,borrow) => {
+                                if (err) {
+                                    res.send({
+                                        status: 300,
+                                        message: err
+                                    });
+                                } else {
+                                    res.send({
+                                        status: 200 ,
+                                        message:'success'
+                                    })
+                                }
+                               });
+                            }
+                        })
+                    }
+                });
+            }
+    });
+}
