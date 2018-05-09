@@ -11,47 +11,64 @@ exports.borrowbook = (req,res) => {
         issue_date: date,
         Due_date: due
     });
-    Books.findOne({_id: req.body.bookid},(err,book) => {
-        if (err) {
-            res.send('Interval error',err);
-        }
-        console.log( book);
-        if(book.available_copies > 0) {
-            borrow.author = book.author;
-            borrow.title = book.title;
-            borrow.save((err ,borrow) =>{
-                if (err) {
-                    res.send({
-                        status: 400,
-                        message: err
-                    });
-                }
-                console.log(req.body.bookid);
-        
-        
-            });
-            book.available_copies = book.available_copies - 1;
-        book.save((err,book)=>{
-            if (err) {
+    Borrow.find({bookid: req.body.bookid,
+        Returned: false},(err,borow)=>{
+            if(err) {
                 res.send({
-                    status:400
+                    status: 400,
+                message: err
                 });
             }
-            res.json({
-                status: 200,
-                books: book,
-                borrow: borrow
-            });
-        });
-        } else{
+            if (borrow.length === 0) {
+                Books.findOne({_id: req.body.bookid},(err,book) => {
+                    if (err) {
+                        res.send('Interval error',err);
+                    }
+                    console.log( book);
+                    if(book.available_copies > 0) {
+                        borrow.author = book.author;
+                        borrow.title = book.title;
+                        borrow.save((err ,borrow) =>{
+                            if (err) {
+                                res.send({
+                                    status: 400,
+                                    message: err
+                                });
+                            }
+                            console.log(req.body.bookid);
+                    
+                    
+                        });
+                        book.available_copies = book.available_copies - 1;
+                    book.save((err,book)=>{
+                        if (err) {
+                            res.send({
+                                status:400
+                            });
+                        }
+                        res.json({
+                            status: 200,
+                            books: book,
+                            borrow: borrow
+                        });
+                    });
+                    } else{
+                        res.send({
+                            status: 405,
+                            message:"not available"
+                        })
+                    }
+                    
+                    
+                });
+        } else {
             res.send({
-                status: 405,
-                message:"not available"
+                status: 500 ,
+                message: "already issued"
             })
         }
-        
-        
     });
+   
  
 }
 exports.getAll = (req,res) =>{
