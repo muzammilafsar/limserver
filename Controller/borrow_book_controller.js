@@ -170,3 +170,19 @@ exports.returnBook = (req, res) => {
             }
     });
 }
+exports.deleteAllBorrow = (req ,res) =>{
+    Borrow.deleteMany({},(err,del)=>{
+        if (err) {
+            res.send({
+                status:400,
+                message: err
+            });
+        } else{
+            res.send({
+                status: 200 ,
+                message: "success",
+                borrow:del
+            })
+        }
+    })
+}
