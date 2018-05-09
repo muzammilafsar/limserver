@@ -21,6 +21,16 @@ var BookSchema = new Schema({
     Return_date : {
         type: Date,
         
+    },
+    Returned: {
+        type: Boolean,
+        default : false
+    },
+    title: {
+        type: String
+    },
+    author: {
+        type: String
     }
 
 });

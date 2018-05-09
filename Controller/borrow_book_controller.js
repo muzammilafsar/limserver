@@ -17,6 +17,8 @@ exports.borrowbook = (req,res) => {
         }
         console.log( book);
         if(book.available_copies > 0) {
+            borrow.author = book.author;
+            borrow.title = book.title;
             borrow.save((err ,borrow) =>{
                 if (err) {
                     res.send({
@@ -64,4 +66,33 @@ exports.getAll = (req,res) =>{
             books: books
         })
     })
+}
+
+exports.userBorrowedBooks = (req, res) => {
+    Borrow.find({user: req.body.email},(err,books) => {
+            if(err) {
+                res.send({
+                    status:400,
+                    message: err
+                });
+            }
+            res.send({
+                status:200,
+                borrow: books
+            })
+    });
+}
+exports.deletedBorrowed = (req, res) => {
+    Borrow.deleteOne({ _id: req.body.id},(err,borrow) => {
+            if(err) {
+                res.send({
+                    status:400,
+                    message: err
+                });
+            }
+            res.send({
+                status:200,
+                borrow: borrow
+            })
+    });
 }
