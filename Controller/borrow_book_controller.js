@@ -64,7 +64,8 @@ exports.borrowbook = (req,res) => {
         } else {
             res.send({
                 status: 500 ,
-                message: "already issued"
+                message: "already issued",
+                borow:borow
             })
         }
     });
