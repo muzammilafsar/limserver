@@ -32,6 +32,7 @@ exports.getBook = (req,res) => {
 }
 exports.addBooks = (req,res) => {
     var new_book = new Books(req.body);
+    new_book.available_copies = req.body.no_of_copies;
     new_book.save((err,book)=>{
         if (err) {
             res.send({status: 400,
