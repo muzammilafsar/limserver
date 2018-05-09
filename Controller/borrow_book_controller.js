@@ -120,6 +120,7 @@ exports.returnBook = (req, res) => {
                                 });
                             } else {
                                borrow.Returned = true;
+                               borrow.Return_date = Date.now();
                                borrow.save((err,borrow) => {
                                 if (err) {
                                     res.send({
