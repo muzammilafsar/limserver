@@ -83,6 +83,7 @@ exports.updateBook = (req,res) => {
         if (err) {
             res.send('book not found',err);
         }
+        book.category = req.body.category;
         book.title = req.body.title;
         book.author = req.body.author;
         book.description = req.body.description;
