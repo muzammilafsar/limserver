@@ -195,5 +195,10 @@ exports.adminlogin = (req,res) => {
             image: '',
 
         });
+    } else {
+        res.send({
+            status:400,
+            message: 'wrong username/ password'
+        });
     }
 }
