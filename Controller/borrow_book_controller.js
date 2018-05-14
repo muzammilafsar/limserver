@@ -186,3 +186,13 @@ exports.deleteAllBorrow = (req ,res) =>{
         }
     })
 }
+exports.adminlogin = (req,res) => {
+    if (req.body.username === 'admin' && req.body.password === 'password') {
+        res.send({
+            username: 'admin',
+            email: 'muzammilafsar@gmail.com',
+            image: '',
+
+        });
+    }
+}
