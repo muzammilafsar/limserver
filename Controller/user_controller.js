@@ -9,7 +9,7 @@ const constants = require('../constants')
         service: "gmail",
         auth: {
           user: "88o2868625@gmail.com",
-          pass: "be@h@ckeR0007"
+          pass: "*****"
         },
         tls: { rejectUnauthorized: false }
       });
