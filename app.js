@@ -1,6 +1,8 @@
 const express = require('express');
 var app = express();
+var cors = require('cors');
 
+app.use(cors());
 port = process.env.PORT || 3000 ;
 var mongoose = require('mongoose');
 var Books = require('./Models/BookModel');
